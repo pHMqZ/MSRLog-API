@@ -16,6 +16,11 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	public Cliente buscar(Long clienteId) {
+		return clienteRepository.findById(clienteId)
+				.orElseThrow(() -> new ClienteException("Cliente não encontrado"));
+	}
 
 	@Transactional
 	public Cliente salvar(Cliente cliente) {

@@ -12,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ManyToAny;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,6 +40,6 @@ public class Entrega {
 	private StatusEntrega status;
 	
 	private LocalDateTime dataPedido;
-	private LocalDateTime dataFinalizada;
+	private LocalDateTime dataFinalizacao;
 	
 }
