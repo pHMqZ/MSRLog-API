@@ -1,6 +1,7 @@
 package com.pms.msrlog.exceptionhandler;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		Error error = new Error();
 		error.setStatus(status.value());
-		error.setDataHora(LocalDateTime.now());
+		error.setDataHora(OffsetDateTime.now());
 		error.setTitulo("Campos estão inválidos. Faça o preenchimento correto e tente novamente.");
 		error.setCampos(campos);
 		
@@ -55,7 +56,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		Error error = new Error();
 		error.setStatus(status.value());
-		error.setDataHora(LocalDateTime.now());
+		error.setDataHora(OffsetDateTime.now());
 		error.setTitulo(ex.getMessage());
 		
 		
