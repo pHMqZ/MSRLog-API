@@ -20,6 +20,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.pms.msrlog.exception.ClienteException;
+import com.pms.msrlog.exception.ServiceException;
 
 
 @ControllerAdvice
@@ -48,6 +49,18 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		error.setCampos(campos);
 		
 		return handleExceptionInternal(ex, error, headers, status, request);
+	}
+	
+	@ExceptionHandler(ServiceException.class)
+	public ResponseEntity<Object> handleEntidadeNaoEncontrada(ServiceException ex, WebRequest request) {
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		
+		Error erro = new Error();
+		erro.setStatus(status.value());
+		erro.setDataHora(OffsetDateTime.now());
+		erro.setTitulo(ex.getMessage());
+		
+		return handleExceptionInternal(ex, erro, new HttpHeaders(), status, request);
 	}
 	
 	@ExceptionHandler(ClienteException.class)
